@@ -64,7 +64,9 @@ namespace TheGPvp.Commands
                 });
             }
             else
+            {
                 AddSpawn(player, spawn, arena);
+            }
         }
 
         private static void AddSpawn(ShPlayer player, BattleSpawn spawn, Arena arena)

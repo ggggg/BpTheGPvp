@@ -129,7 +129,10 @@ namespace TheGPvp.ArenaTypes
         private void GiveKitToAllPlayers()
         {
             var battleType = Utils.FormatBattleType(Battle);
-            if (!Core.Instance.Kits[ArenaSerializable.Name].ContainsKey(battleType)) return;
+            if (!Core.Instance.Kits[ArenaSerializable.Name].ContainsKey(battleType))
+            {
+                return;
+            }
             var kits = Core.Instance.Kits[ArenaSerializable.Name][battleType];
             foreach (var player in Battle.Players)
             {
