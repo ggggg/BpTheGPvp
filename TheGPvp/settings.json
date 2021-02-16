@@ -1,0 +1,7 @@
+{
+  "General": {
+    "Version": "0.1.0",
+    "MaxLobbyTime" : 30,
+    "LottingTime" : 10
+  }
+}

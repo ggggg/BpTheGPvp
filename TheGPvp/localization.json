@@ -1,0 +1,32 @@
+{
+   "EN": {
+      "not_enoughjoined" : "Not enough players joined to form a match.",
+      "battleplayer_joined" : "{0} has joined the battle.",
+      "can_startbattle" : "There are enough players to start TDM, {0} in each team, do /starttdm to start.",
+      "your_team" : "The battle has started, your team is {0}.",
+      "battle_ wonteam" : "Team {0} won.",
+      "battle_ won" : "{0} won.",
+      "battleplayer_left" : "{0} left now there are {1} players.",
+      "battle_leader" : "The leader has left, you are now the leader (starts the battle).",
+      "pvpplayer_died" : "{0} has died, {1} more players left.",
+      "pvpplayer_diedteam" : "{0} from {1} has died, {2} teams left.",
+      "already_inbattle" : "Already in battle.",
+      "not_leader" : "you are not a battle leader, you cant start the bettle.",
+      "not_enoughplayers" : "you need {0} more players to start the tdm.",
+      "arena_notfound" : "Could not find arena {0} use /arenalist.",
+      "add_lobby" : "The lobby for {0} has been set to your curent location.",
+      "no_pvpinvite" : "You dont have any active battle invites use /pvp or /tdm to start a global battle.",
+      "all_inuse" : "All arenas are in use, please wait for one to free up.",
+      "global_pvp" : "{0} has started a global pvp match, use /pvp to join.",
+      "pvp_invite" : "{0} invited YOU to a pvp match, use /pvp to join.",
+      "add_spawns" : "Added a spawn to {0}, now {0} has {1} spawns.",
+      "arena_nametaken" : "There is already an arena named {0}, use /deletearena to remove it or choose another name.",
+      "arena_created" : "Created {0}.",
+      "global_battle" : "Has started a TDM, use /tdm to join.",
+      "arena_list" : "{0}",
+      "arena_deleted" : "Deleted {0}.",
+      "lotting_time" : "You won! Now you have {0}s before tped back!",
+      "already_startedbattle" : "Battle already began!"
+
+   }
+}

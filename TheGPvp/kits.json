@@ -1,0 +1,10 @@
+{
+    "test" : {
+        "PvpBattle": [
+            {
+                "Item": "AK47",
+                "Amount": 1
+            }
+        ]
+    }
+}
