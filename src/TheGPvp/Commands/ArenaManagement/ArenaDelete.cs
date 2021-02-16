@@ -21,14 +21,14 @@ namespace TheGPvp.Commands
 
         public void OnCommandInvoke(ShPlayer player, string arenaName)
         {
-            var arena = Core.Instance.ArenaManager.Arenas.FirstOrDefault(x => x.ArenaSerilizable.Name == arenaName);
+            var arena = Core.Instance.ArenaManager.Arenas.FirstOrDefault(x => x.ArenaSerializable.Name == arenaName);
             if (arena == null)
             {
                 player.TS("arena_notfound", arenaName);
                 return;
             }
             Core.Instance.ArenaManager.Arenas.Remove(arena);
-            Core.Instance.ArenaManager.ArenaCollection.Delete(arena.ArenaSerilizable.Name);
+            Core.Instance.ArenaManager.ArenaCollection.Delete(arena.ArenaSerializable.Name);
             player.TS("arena_deleted", arenaName);
         }
     }

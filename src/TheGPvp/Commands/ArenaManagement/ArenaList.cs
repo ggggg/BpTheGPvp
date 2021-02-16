@@ -21,7 +21,7 @@ namespace TheGPvp.Commands
             string list = "";
             foreach (var arena in Core.Instance.ArenaManager.Arenas)
             {
-                list += arena.ArenaSerilizable.Name + " | ";
+                list += arena.ArenaSerializable.Name + " | ";
             }
             player.TS("arena_list", list);
         }

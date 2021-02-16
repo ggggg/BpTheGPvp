@@ -24,7 +24,7 @@ namespace TheGPvp.Commands
 
         public void OnCommandInvoke(ShPlayer player, string name)
         {
-            if (Core.Instance.ArenaManager.Arenas.FirstOrDefault(x => x.ArenaSerilizable.Name == name) != null)
+            if (Core.Instance.ArenaManager.Arenas.FirstOrDefault(x => x.ArenaSerializable.Name == name) != null)
             {
                 player.TS("arena_nametaken", name);
                 return;
@@ -34,15 +34,15 @@ namespace TheGPvp.Commands
             Core.Instance.Logger.LogInfo(++i + "");
             var actions = new[]{new ActionLabel("Select", (cPlayer, id) =>
             {
-                if (Core.Instance.ArenaManager.Arenas.FirstOrDefault(x => x.ArenaSerilizable.Name == name) != null)
+                if (Core.Instance.ArenaManager.Arenas.FirstOrDefault(x => x.ArenaSerializable.Name == name) != null)
                 {
                     player.TS("arena_nametaken", name);
                     return;
                 }
 
-                var arena = new Arena(new ArenaSerilizable()) {ArenaSerilizable = {Name = name, Type = id}};
+                var arena = new Arena(new ArenaSerializable()) {ArenaSerializable = {Name = name, Type = id}};
                 Core.Instance.ArenaManager.Arenas.Add(arena);
-                Core.Instance.ArenaManager.ArenaCollection.Insert(arena.ArenaSerilizable);
+                Core.Instance.ArenaManager.ArenaCollection.Insert(arena.ArenaSerializable);
                 cPlayer.TS("arena_created", name);
             })};
             Core.Instance.Logger.LogInfo(++i + "");

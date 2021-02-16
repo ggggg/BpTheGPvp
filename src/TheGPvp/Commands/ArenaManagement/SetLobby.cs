@@ -21,7 +21,7 @@ namespace TheGPvp.Commands
 
         public void OnCommandInvoke(ShPlayer player, string arenaName)
         {
-            var arena = Core.Instance.ArenaManager.Arenas.FirstOrDefault(x => x.ArenaSerilizable.Name == arenaName);
+            var arena = Core.Instance.ArenaManager.Arenas.FirstOrDefault(x => x.ArenaSerializable.Name == arenaName);
             if (arena == null)
             {
                 player.TS("arena_notfound", arenaName);
@@ -35,7 +35,7 @@ namespace TheGPvp.Commands
                 Index = player.GetPlaceIndex,
                 Rotation = player.GetRotation
             };
-            arena.ArenaSerilizable.Lobby = spawn;
+            arena.ArenaSerializable.Lobby = spawn;
             player.TS("add_lobby", arenaName);
         }
     }

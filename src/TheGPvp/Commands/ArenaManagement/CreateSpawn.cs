@@ -26,13 +26,13 @@ namespace TheGPvp.Commands
 
         public void OnCommandInvoke(ShPlayer player, string arenaName)
         {
-            var arena = Core.Instance.ArenaManager.Arenas.FirstOrDefault(x => x.ArenaSerilizable.Name == arenaName);
+            var arena = Core.Instance.ArenaManager.Arenas.FirstOrDefault(x => x.ArenaSerializable.Name == arenaName);
             if (arena == null)
             {
                 player.TS("arena_notfound", arenaName);
                 return;
             }
-            if (arena.ArenaSerilizable.Type == TypeManager.AllType)
+            if (arena.ArenaSerializable.Type == TypeManager.AllType)
             {
                 var labels = new List<LabelID>();
                 var actions = new[] { new ActionLabel("Select", (cPlayer, id) => Create(cPlayer, id, arena)) };
@@ -41,7 +41,7 @@ namespace TheGPvp.Commands
                 player.SendOptionMenu("Select spawn type:", labels, actions);
                 return;
             }
-            Create(player, arena.ArenaSerilizable.Type, arena);
+            Create(player, arena.ArenaSerializable.Type, arena);
         }
 
         private static void Create(ShPlayer player, string type, Arena arena)
@@ -69,8 +69,8 @@ namespace TheGPvp.Commands
 
         private static void AddSpawn(ShPlayer player, BattleSpawn spawn, Arena arena)
         {
-            arena.ArenaSerilizable.Spawns.Add(spawn);
-            player.TS("add_spawns", arena.ArenaSerilizable.Name, arena.ArenaSerilizable.Spawns.Count);
+            arena.ArenaSerializable.Spawns.Add(spawn);
+            player.TS("add_spawns", arena.ArenaSerializable.Name, arena.ArenaSerializable.Spawns.Count);
         }
     }
 }

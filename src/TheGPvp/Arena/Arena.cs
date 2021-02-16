@@ -25,16 +25,16 @@ namespace TheGPvp.ArenaTypes
             }
         }
 
-        private string ArenaType => InUse && ArenaSerilizable.Type == TypeManager.AllType
+        private string ArenaType => InUse && ArenaSerializable.Type == TypeManager.AllType
             ? Utils.FormatBattleType(Battle)
-            : ArenaSerilizable.Type;
+            : ArenaSerializable.Type;
 
-        public Arena(ArenaSerilizable arenaSerilizable)
+        public Arena(ArenaSerializable arenaSerializable)
         {
-            ArenaSerilizable = arenaSerilizable;
+            ArenaSerializable = arenaSerializable;
         }
 
-        public ArenaSerilizable ArenaSerilizable { get; set; }
+        public ArenaSerializable ArenaSerializable { get; set; }
 
         public bool InUse => Battle != null;
 
@@ -43,9 +43,9 @@ namespace TheGPvp.ArenaTypes
         public List<BattleSpawn> GetValidSpawns(string type)
         {
             var setSpawn = Utils.IsSetSpawn(type);
-            return ArenaSerilizable.Type != TypeManager.AllType
-                ? ArenaSerilizable.Spawns
-                : ArenaSerilizable.Spawns.Where(x =>
+            return ArenaSerializable.Type != TypeManager.AllType
+                ? ArenaSerializable.Spawns
+                : ArenaSerializable.Spawns.Where(x =>
                     ((!setSpawn && x.SpawnType == TypeManager.AllType) || x.SpawnType == type)).ToList();
         }
 
@@ -56,7 +56,7 @@ namespace TheGPvp.ArenaTypes
 
         public void Save()
         {
-            Core.Instance.ArenaManager.ArenaCollection.Upsert(ArenaSerilizable);
+            Core.Instance.ArenaManager.ArenaCollection.Upsert(ArenaSerializable);
         }
 
         public void Start<T>(ShPlayer player, T battle, bool global = true) where T : IBattle
@@ -97,7 +97,7 @@ namespace TheGPvp.ArenaTypes
             {
                 return false;
             }
-            player.GetExtendedPlayerPvp().TpToSpawnSave(ArenaSerilizable.Lobby);
+            player.GetExtendedPlayerPvp().TpToSpawnSave(ArenaSerializable.Lobby);
             return true;
         }
 
@@ -109,7 +109,7 @@ namespace TheGPvp.ArenaTypes
             }
 
             Battle.SpawnPlayers(GetValidSpawns().Shuffle());
-            if (Core.Instance.Kits.ContainsKey(ArenaSerilizable.Name))
+            if (Core.Instance.Kits.ContainsKey(ArenaSerializable.Name))
             {
                 GiveKitToAllPlayers();
             }
@@ -121,8 +121,8 @@ namespace TheGPvp.ArenaTypes
         private void GiveKitToAllPlayers()
         {
             var battleType = Utils.FormatBattleType(Battle);
-            if (!Core.Instance.Kits[ArenaSerilizable.Name].ContainsKey(battleType)) return;
-            var kits = Core.Instance.Kits[ArenaSerilizable.Name][battleType];
+            if (!Core.Instance.Kits[ArenaSerializable.Name].ContainsKey(battleType)) return;
+            var kits = Core.Instance.Kits[ArenaSerializable.Name][battleType];
             foreach (var player in Battle.Players)
             {
                 player.GetExtendedPlayerPvp()?.GiveKitSave(kits);

@@ -15,12 +15,12 @@ namespace TheGPvp
 
         public Dictionary<string, Arena> GlobalPvp { get; set; } = new Dictionary<string, Arena>();
 
-        public ILiteCollection<ArenaSerilizable> ArenaCollection { get; set; }
+        public ILiteCollection<ArenaSerializable> ArenaCollection { get; set; }
 
         public List<Arena> Arenas { get; set; } = new List<Arena>();
 
         [Serializable]
-        public class ArenaSerilizable
+        public class ArenaSerializable
         {
             [BsonId(true)]
             public string Name { get; set; }
@@ -109,11 +109,11 @@ namespace TheGPvp
                 Core.Instance.Logger.LogWarning("Did not find Arena Table: " + ArenasTable);
             }
 
-            ArenaCollection = Core.Instance.SvManager.database.LiteDB.GetCollection<ArenaSerilizable>(ArenasTable);
+            ArenaCollection = Core.Instance.SvManager.database.LiteDB.GetCollection<ArenaSerializable>(ArenasTable);
             foreach (var arena in ArenaCollection.FindAll().ToArray())
             {
                 Core.Instance.Logger.Log($"Loading Data for: {arena.Name} ");
-                if (Arenas.FirstOrDefault(x => x.ArenaSerilizable == arena) != null)
+                if (Arenas.FirstOrDefault(x => x.ArenaSerializable == arena) != null)
                 {
                     Core.Instance.Logger.LogWarning($"Arena {arena.Name} is duplicated! Deleting.");
                     ArenaCollection.Delete(arena.Name);
@@ -129,8 +129,8 @@ namespace TheGPvp
             var goodArenas = (from x in Core.Instance.ArenaManager.Arenas
                               where !x.InUse &&
                                     x.GetValidSpawns(type).Count >= numberOfTeams &&
-                                    x.ArenaSerilizable.Lobby != null &&
-                                   (type == TypeManager.AllType || x.ArenaSerilizable.Type == TypeManager.AllType || x.ArenaSerilizable.Type == type)
+                                    x.ArenaSerializable.Lobby != null &&
+                                   (type == TypeManager.AllType || x.ArenaSerializable.Type == TypeManager.AllType || x.ArenaSerializable.Type == type)
                               select x).ToList();
             Core.Instance.Logger.LogInfo(goodArenas.Count + "");
             return !goodArenas.Any() ? null : goodArenas[UnityEngine.Random.Range(0, goodArenas.Count - 1)];
