@@ -54,7 +54,7 @@ namespace TheGPvp
                 Description = "PointLife custom pvp Content"
             };
 
-            EventsHandler.Add("TheGPvp:reload", new Action(OnReloadRequestAsync));
+            EventsHandler.Add("TheGPvp:reload", new Action(() => OnReloadRequestAsync()));
 
             ArenaManager = new ArenaManager();
             RankManager = new RankManager();
