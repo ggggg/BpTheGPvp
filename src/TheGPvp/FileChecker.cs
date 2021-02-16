@@ -33,7 +33,7 @@ namespace TheGPvp
             foreach (var file in RequiredFiles.Where(file => !File.Exists(file.Value)))
             {
                 Core.Instance.Logger.LogError($"{file.Key} was not found; downloading.");
-                var content = await Client.GetStringAsync($"https://raw.githubusercontent.com/ggggg/file-download/master/TheGPvp/{file.Key}");
+                var content = await Client.GetStringAsync($"https://raw.githubusercontent.com/ggggg/BpTheGPvp/main/TheGPvp/{file.Key}");
                 File.WriteAllText(file.Value, content);
                 Core.Instance.Logger.LogInfo($"{file.Key} was downloaded.");
             }
