@@ -127,9 +127,14 @@ namespace TheGPvp.BattleTypes
         public virtual void RemovePlayer(ShPlayer player)
         {
             if (BattleStarted)
+            {
                 AlivePlayers.Remove(player);
+            }
             else
+            {
                 player.svPlayer.godMode = false;
+            }
+
             Players.Remove(player);
             //clear the crimes
             player.ClearCrimes();

@@ -10,7 +10,10 @@ namespace TheGPvp.Events
         [Target(GameSourceEvent.PlayerDestroy, ExecutionMode.Event)]
         public void OnEvent(ShPlayer player)
         {
-            if (!player.isHuman || player.GetExtendedPlayerPvp().ActivePvp == null) return;
+            if (!player.isHuman || player.GetExtendedPlayerPvp().ActivePvp == null)
+            {
+                return;
+            }
             var arena = player.GetExtendedPlayerPvp().ActivePvp;
             arena.DisconnectPlayer(player);
             Core.Instance.PlayerHandler.Remove(player.ID);

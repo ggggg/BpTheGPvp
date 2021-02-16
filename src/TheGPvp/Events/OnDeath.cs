@@ -24,7 +24,10 @@ namespace TheGPvp.Events
         [Target(GameSourceEvent.PlayerDeath, ExecutionMode.PostEvent)]
         public void OnEvent(ShPlayer player, ShPlayer attacker)
         {
-            if (!player.isHuman || player.GetExtendedPlayerPvp().ActivePvp == null) return;
+            if (!player.isHuman || player.GetExtendedPlayerPvp().ActivePvp == null)
+            {
+                return;
+            }
             player.GetExtendedPlayerPvp().ActivePvp.OnPlayerDeath(player, attacker);
         }
     }

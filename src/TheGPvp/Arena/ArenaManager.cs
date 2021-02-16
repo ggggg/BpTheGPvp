@@ -77,7 +77,7 @@ namespace TheGPvp
         {
             public string SpawnType { get; set; } = TypeManager.AllType;
 
-            public string TeamName { get; set; } = null;
+            public string TeamName { get; set; }
 
             public float X { get; set; }
 

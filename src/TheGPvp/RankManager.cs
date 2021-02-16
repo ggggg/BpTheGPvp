@@ -18,7 +18,7 @@ namespace TheGPvp
 
         public string RankedTable { get; set; } = Core.Instance.Info.GroupNamespace + "_Ranked";
 
-        public LiteDB.ILiteCollection<PlayerSerilizable> RankedCollection { get; set; } = null;
+        public LiteDB.ILiteCollection<PlayerSerilizable> RankedCollection { get; set; }
 
         public class PlayerSerilizable
         {
@@ -62,10 +62,15 @@ namespace TheGPvp
             RankedCollection = Core.Instance.SvManager.database.LiteDB.GetCollection<PlayerSerilizable>(RankedTable);
         }
 
-        public List<PlayerSerilizable> GetTopX(int count = 10)
+        public List<PlayerSerilizable> GetTopX(int count)
         {
             Core.Instance.Logger.Log("Get top x");
             return RankedCollection.FindAll().OrderByDescending(x => x.getPlayerWins()).Take(count).ToList();
+        }
+
+        public List<PlayerSerilizable> GetTopX()
+        {
+            return GetTopX(10);
         }
     }
 

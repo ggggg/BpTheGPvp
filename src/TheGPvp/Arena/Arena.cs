@@ -59,7 +59,12 @@ namespace TheGPvp.ArenaTypes
             Core.Instance.ArenaManager.ArenaCollection.Upsert(ArenaSerializable);
         }
 
-        public void Start<T>(ShPlayer player, T battle, bool global = true) where T : IBattle
+        public void Start<T>(ShPlayer player, T battle) where T : IBattle
+        {
+            Start(player, battle, true);
+        }
+
+        public void Start<T>(ShPlayer player, T battle, bool global) where T : IBattle
         {
             Battle = battle;
             battle.BattleStarted = false;
@@ -76,7 +81,10 @@ namespace TheGPvp.ArenaTypes
         {
             Core.Instance.StartMethodTimer(Core.Instance.Settings.General.MaxLobbyTime, () =>
             {
-                if (Battle == null || Battle.BattleStarted || !ReferenceEquals(battle, Battle)) return;
+                if (Battle == null || Battle.BattleStarted || !ReferenceEquals(battle, Battle))
+                {
+                    return;
+                }
                 if (Battle.CheckForPlayers())
                 {
                     Battle.Players[0].TS("battle_leader_start");

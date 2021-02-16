@@ -34,11 +34,15 @@ namespace TheGPvp.BattleTypes
             return team != null && team.Players.Any(y => AlivePlayers.Contains(y));
         }
 
-        protected TdmBattle(int numberOfTeams = 2) : base()
+        protected TdmBattle(int numberOfTeams)
         {
             Debug.Assert(numberOfTeams > 1);
             NumberOfTeams = numberOfTeams;
             Teams = new T[numberOfTeams];
+        }
+
+        protected TdmBattle() : this(2)
+        {
         }
 
         public override bool CheckForPlayers()
@@ -48,7 +52,10 @@ namespace TheGPvp.BattleTypes
 
         public override void OnWin(Action callback)
         {
-            foreach (var player in new List<ShPlayer>(Players)) RemovePlayer(player);
+            foreach (var player in new List<ShPlayer>(Players))
+            {
+                RemovePlayer(player);
+            }
             callback.Invoke();
         }
 
@@ -71,8 +78,12 @@ namespace TheGPvp.BattleTypes
                 }
                 return;
             }
+
             if (oldUsername == player.username)
+            {
                 Players[0].TS("tdm_leader", player.username.CleanerMessage(), Players.Count);
+            }
+
             foreach (var cplayer in Players.Where(cplayer => cplayer != player && cplayer != null))
             {
                 cplayer.TS("battleplayer_left", player.username.CleanerMessage(), Players.Count);
@@ -104,7 +115,9 @@ namespace TheGPvp.BattleTypes
             {
                 Teams[i].Spawn = spawns[i];
                 foreach (var player in Teams[i].Players)
+                {
                     player.GetExtendedPlayerPvp().TpToSpawn(Teams[i].Spawn);
+                }
             }
         }
 

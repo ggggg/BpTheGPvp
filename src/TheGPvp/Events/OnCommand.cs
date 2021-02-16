@@ -26,9 +26,15 @@ namespace TheGPvp.Events
 
         private bool TestMethod(ShPlayer player, string message)
         {
-            if (!message.StartsWith("/")) return true;
+            if (!message.StartsWith("/"))
+            {
+                return true;
+            }
             var booli = player.GetExtendedPlayerPvp().ActivePvp?.Battle?.BattleStarted;
-            if (booli == false || booli == null) return true;
+            if (booli == false || booli == null)
+            {
+                return true;
+            }
             player.TS("pvp_command");
             return false;
         }

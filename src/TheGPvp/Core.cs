@@ -12,6 +12,7 @@ using UnityEngine;
 using System.Collections;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using TheGPvp.Configuration.Models;
 
 namespace TheGPvp
@@ -108,17 +109,21 @@ namespace TheGPvp
         {
             SettingsReader.Path = Paths.SettingsFile;
             if (File.Exists(Paths.KitsFile))
+            {
                 KitsReader.Path = Paths.KitsFile;
+            }
         }
 
         public void ReadConfigurationFiles()
         {
             SettingsReader.ReadAndParse();
             if (File.Exists(Paths.KitsFile))
+            {
                 KitsReader.ReadAndParse();
+            }
         }
 
-        public async void OnReloadRequestAsync()
+        public async Task OnReloadRequestAsync()
         {
             SetConfigurationFilePaths();
             await FileChecker.CheckFiles();

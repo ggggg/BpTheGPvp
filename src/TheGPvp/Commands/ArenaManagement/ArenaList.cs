@@ -3,6 +3,7 @@ using BrokeProtocol.API;
 using BrokeProtocol.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using static TheGPvp.ArenaManager;
 
 namespace TheGPvp.Commands
@@ -18,11 +19,7 @@ namespace TheGPvp.Commands
 
         public void OnCommandInvoke(ShPlayer player)
         {
-            string list = "";
-            foreach (var arena in Core.Instance.ArenaManager.Arenas)
-            {
-                list += arena.ArenaSerializable.Name + " | ";
-            }
+            var list = Core.Instance.ArenaManager.Arenas.Aggregate("", (current, arena) => current + (arena.ArenaSerializable.Name + " | "));
             player.TS("arena_list", list);
         }
     }

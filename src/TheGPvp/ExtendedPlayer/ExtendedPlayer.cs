@@ -24,7 +24,7 @@ namespace TheGPvp.ExtendedPlayer
 
         public Arena PvpInvite { get; set; }
 
-        public Dictionary<ShItem, int> SavedItems { get; set; } = null;
+        public Dictionary<ShItem, int> SavedItems { get; set; }
 
         public void ClearCrimes()
         {
@@ -36,7 +36,7 @@ namespace TheGPvp.ExtendedPlayer
                    x.Battle != null && ((x.Battle.BattleStarted && x.Battle.AlivePlayers.Contains(player)) ||
                                         (!x.Battle.BattleStarted && x.Battle.Players.Contains(player))));
 
-        public bool CrimeLoop { get; set; } = false;
+        public bool CrimeLoop { get; set; }
 
         private readonly ShPlayer player;
 
@@ -119,7 +119,10 @@ namespace TheGPvp.ExtendedPlayer
 
         public void GiveItemsBack()
         {
-            if (SavedItems == null) return;
+            if (SavedItems == null)
+            {
+                return;
+            }
             RemoveItems(player.myItems.Values.ToList());
             foreach (var item in SavedItems)
             {
