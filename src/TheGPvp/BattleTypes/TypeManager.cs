@@ -27,7 +27,12 @@ namespace TheGPvp.BattleTypes
                                    select new KeyValuePair<Plugin, Type>(x.Plugin, battleType))
             {
                 Core.Instance.Logger.LogInfo(battle.Value.Name);
-                BattleTypes.Add(/*battle.Key.CustomData.FetchCustomData<string>(DataKey) ??*/ battle.Value.Name, battle.Value);
+                var key = /*battle.Key.CustomData.FetchCustomData<string>(DataKey) ??*/ battle.Value.Name;
+                if (BattleTypes.ContainsKey(key))
+                {
+                    Core.Instance.Logger.LogWarning(key + " battle type already registered, skipping...");
+                }
+                BattleTypes.Add(key, battle.Value);
             }
         }
     }
