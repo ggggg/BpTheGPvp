@@ -47,11 +47,13 @@ namespace TheGPvp.ExtendedPlayer
                 return;
             }
             CrimeLoop = true;
-            player.ClearCrimes();
-            player.svPlayer.Send(SvSendType.Self, Channel.Reliable, ClPacket.ClearCrimes, player.ID);
-            player.AddCrime(CrimeIndex.Bombing, null);
-            player.svPlayer.Send(SvSendType.Self, Channel.Reliable, ClPacket.AddCrime, CrimeIndex.Bombing, 0);
-            Core.Instance.StartMethodTimer(400000, () =>
+            if (player.wantedLevel < 0)
+            {
+                player.svPlayer.Send(SvSendType.Self, Channel.Reliable, ClPacket.ClearCrimes, player.ID);
+                player.AddCrime(CrimeIndex.Bombing, null);
+                player.svPlayer.Send(SvSendType.Self, Channel.Reliable, ClPacket.AddCrime, CrimeIndex.Bombing, 0);
+            }
+            Core.Instance.StartMethodTimer(6, () =>
             {
                 if (!Core.Instance.SvManager.connectedPlayers.ContainsValue(player) || ActivePvp == null)
                 {
