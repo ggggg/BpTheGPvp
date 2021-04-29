@@ -51,7 +51,7 @@ namespace TheGPvp.ExtendedPlayer
             player.svPlayer.Send(SvSendType.Self, Channel.Reliable, ClPacket.ClearCrimes, player.ID);
             player.AddCrime(CrimeIndex.Bombing, null);
             player.svPlayer.Send(SvSendType.Self, Channel.Reliable, ClPacket.AddCrime, CrimeIndex.Bombing, 0);
-            Core.Instance.StartMethodTimer(400000, () =>
+            Core.Instance.StartMethodTimer(60, () =>
             {
                 if (!Core.Instance.SvManager.connectedPlayers.ContainsValue(player) || ActivePvp == null)
                 {
