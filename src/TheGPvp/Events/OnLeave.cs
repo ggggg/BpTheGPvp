@@ -12,12 +12,12 @@ namespace TheGPvp.Events
         {
             if (!player.isHuman || player.GetExtendedPlayerPvp().ActivePvp == null)
             {
-                return false;
+                return true;
             }
             var arena = player.GetExtendedPlayerPvp().ActivePvp;
             arena.DisconnectPlayer(player);
             Core.Instance.PlayerHandler.Remove(player.ID);
-            return false;
+            return true;
         }
 
         [Target(GameSourceEvent.PlayerDestroy, ExecutionMode.PostEvent)]
